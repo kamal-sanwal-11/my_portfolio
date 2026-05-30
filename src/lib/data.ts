@@ -16,14 +16,6 @@ export const personalInfo = {
   location: "Gurugram, India",
 }
 
-export const heroMetrics = [
-  { value: "500K+", label: "users (0→1)" },
-  { value: "$60M", label: "monthly remittance" },
-  { value: "100K+", label: "POS devices" },
-  { value: "~40%", label: "Card TPV" },
-  { value: "VoC 800 → <70", label: "support tickets" },
-]
-
 // ─── Selected Work ────────────────────────────────────────────────────────────
 
 export interface WorkMetric {
@@ -43,6 +35,22 @@ export interface WorkItem {
 }
 
 export const work: WorkItem[] = [
+  {
+    id: "xtelify-ai",
+    company: "Xtelify (Airtel)",
+    companyColor: "#E40000",
+    category: "AI Platform",
+    title: "AI Orchestration System",
+    blurb:
+      "A single control plane to operationalize production LLM apps — guardrails, observability, evaluation, FinOps, and real-time alerting.",
+    metrics: [
+      { value: "Guardrails · Observability", label: "reliability stack" },
+      { value: "FinOps · Evaluation", label: "cost & quality" },
+      { value: "Real-time alerting", label: "incident response" },
+    ],
+    detail:
+      "Driving product for AI platform capabilities — conversational Voice AI and an end-to-end AI Orchestration System for running LLM applications reliably at scale. Centralizing guardrail frameworks, observability/evaluation tooling, FinOps controls, and real-time alerting in one control plane so teams can ship AI features with confidence. See Career Stints for full detail.",
+  },
   {
     id: "bharatpe-pos",
     company: "BharatPe",
@@ -137,22 +145,6 @@ export const work: WorkItem[] = [
     detail:
       "For Fortune 500 e-commerce and media clients, ran A/B testing, segmentation, and funnel redesigns; introduced self-help flows and Adobe-stack personalization. Reduced contact volume by 10K+/year (~$20K saved), enabled 4% uptick in conversions, and 7% upsurge in cross-selling via behavioral segmentation.",
   },
-  {
-    id: "xtelify-ai",
-    company: "Xtelify (Airtel)",
-    companyColor: "#E40000",
-    category: "AI Platform",
-    title: "AI Orchestration System",
-    blurb:
-      "A single control plane to operationalize production LLM apps — guardrails, observability, evaluation, FinOps, and real-time alerting.",
-    metrics: [
-      { value: "Guardrails · Observability", label: "reliability stack" },
-      { value: "FinOps · Evaluation", label: "cost & quality" },
-      { value: "Real-time alerting", label: "incident response" },
-    ],
-    detail:
-      "Driving product for AI platform capabilities — conversational Voice AI and an end-to-end AI Orchestration System for running LLM applications reliably at scale. Centralizing guardrail frameworks, observability/evaluation tooling, FinOps controls, and real-time alerting in one control plane so teams can ship AI features with confidence. See Career Stints for full detail.",
-  },
 ]
 
 // ─── Career Stints ────────────────────────────────────────────────────────────
@@ -168,18 +160,21 @@ export interface Experience {
   company: string
   role: string
   period: string
+  oneLiner: string
   summary: string
   bullets: string[]
   achievements: string[]
   award: string | null
+  logo: string
   theme: CompanyTheme
 }
 
 export const experiences: Experience[] = [
   {
     company: "Xtelify Limited (Airtel)",
-    role: "Senior Product Manager",
+    role: "Senior Product Manager · AI Experiences & Platforms",
     period: "Jan 2026 – Present",
+    oneLiner: "Building Voice AI and AI-orchestration platforms for production LLM apps.",
     summary:
       "Driving product for AI platform capabilities — conversational Voice AI and an end-to-end AI Orchestration System for running LLM applications reliably at scale.",
     bullets: [
@@ -196,6 +191,7 @@ export const experiences: Experience[] = [
       "Velocity: shortened the eval-to-deploy cycle through automated evaluation.",
     ],
     award: null,
+    logo: "/logos/xtelify-logo.png",
     theme: {
       primary: "#E40000",
       secondary: "#333333",
@@ -207,6 +203,7 @@ export const experiences: Experience[] = [
     company: "BharatPe – Resilient Innovations Pvt. Ltd.",
     role: "Product Manager – Devices (POS and Speakers)",
     period: "Feb 2024 – Jan 2026",
+    oneLiner: "Owned the POS & devices payments business — concept to scaled deployment and monetization.",
     summary:
       "Handled payments and device business for BharatPe. Accountable for product conceptualization, solution design, writing specifications, improving UI/UX, charting roadmap, feature prioritization and planned execution.",
     bullets: [
@@ -225,6 +222,7 @@ export const experiences: Experience[] = [
       "Decreased dual-device merchant usage from 85% to 7%.",
     ],
     award: "BharatPe Rockstar Award (Jan 2025)",
+    logo: "/logos/bharatpe-logo.png",
     theme: {
       primary: "#10707F",
       secondary: "#E4606D",
@@ -236,6 +234,7 @@ export const experiences: Experience[] = [
     company: "INDmoney – Finzoom Investments Advisors Ltd.",
     role: "Senior Product Manager – US Stocks Investments",
     period: "Aug 2021 – Feb 2024",
+    oneLiner: "Built the US Stocks investing and cross-border remittance stack from 0→1.",
     summary:
       "Responsible for development and management of the US Stocks Investment product. OKRs entailed product conceptualization, optimizing user experience, partner management and driving growth.",
     bullets: [
@@ -254,6 +253,7 @@ export const experiences: Experience[] = [
       "Drove 15% lift in trades via Insta Funding and 20% SIP adoption across investor base.",
     ],
     award: "Remittance Rainmaker Award (2023)",
+    logo: "/logos/ind-money-logo.svg",
     theme: {
       primary: "#111111",
       secondary: "#666666",
@@ -265,6 +265,7 @@ export const experiences: Experience[] = [
     company: "eClerx Services Pvt. Ltd.",
     role: "Business Process Manager – Digital Product Improvisation",
     period: "May 2019 – Aug 2021",
+    oneLiner: "Drove conversion and CX optimization for Fortune 500 e-commerce & media clients.",
     summary:
       "Digital Consultant and Product Manager driving initiatives and optimizing offerings for exceptional client results.",
     bullets: [
@@ -278,6 +279,7 @@ export const experiences: Experience[] = [
       "Enabled 4% uptick in conversions and 7% upsurge in cross-selling via behavioral segmentation.",
     ],
     award: null,
+    logo: "/logos/eclerx-logo.png",
     theme: {
       primary: "#1E2A52",
       secondary: "#64748B",
@@ -317,37 +319,70 @@ export const approachPrinciples = [
   },
 ]
 
-export const tools = [
-  "Mixpanel",
-  "Segment",
-  "Redash",
-  "Metabase",
-  "Adobe Analytics",
-  "Optimizely",
-  "Postman",
-  "JIRA",
-  "Confluence",
-  "Figma",
-  "Draw.io",
-  "Excalidraw",
-  "Miro",
-  "Looker",
-  "Tableau",
-  "Claude / Claude Code",
-]
+// ─── Skills & Tools ───────────────────────────────────────────────────────────
 
-export const domainExpertise = [
-  "WealthTech",
-  "Digital Investments",
-  "Remittances & Payments",
-  "Regulatory Compliance",
-  "Investor Experience Design",
-  "Platform Monetization",
-  "GTM Strategy",
-  "API Ecosystem Strategy",
-  "POS Lifecycle Management",
-  "A/B Testing",
-  "AI Orchestration / LLMOps",
+export interface SkillCategory {
+  title: string
+  items: string[]
+}
+
+export const skillCategories: SkillCategory[] = [
+  {
+    title: "WEALTHTECH & INVESTMENTS",
+    items: [
+      "US Stocks Platform",
+      "Cross-border Remittances",
+      "SIP Products",
+      "Brokerage APIs",
+      "KYC/AML Compliance",
+    ],
+  },
+  {
+    title: "PAYMENTS & DEVICES",
+    items: [
+      "POS Lifecycle Management",
+      "UPI Payments",
+      "Payment Timelines",
+      "Device Monetization",
+      "Logistics Optimization",
+    ],
+  },
+  {
+    title: "PRODUCT & AI",
+    items: [
+      "0→1 Product Building",
+      "Roadmap Planning",
+      "A/B Testing",
+      "GTM Strategy",
+      "Agile/Scrum",
+      "OKRs",
+      "AI Orchestration / LLMOps",
+      "Guardrails & Observability",
+      "LLM Evaluation",
+      "AI FinOps",
+    ],
+  },
+  {
+    title: "ANALYTICS & TOOLS",
+    items: [
+      "Mixpanel",
+      "Segment",
+      "Redash",
+      "Metabase",
+      "Adobe Analytics",
+      "Optimizely A/B Testing",
+      "Postman",
+      "JIRA",
+      "Confluence",
+      "Figma",
+      "Draw.io",
+      "Excalidraw",
+      "Miro",
+      "Looker",
+      "Tableau",
+      "Claude / Claude Code",
+    ],
+  },
 ]
 
 // ─── Education ───────────────────────────────────────────────────────────────
@@ -372,6 +407,5 @@ export const education = [
 export const contactLinks = [
   { label: "Email", href: "mailto:kmlsnwl@gmail.com", type: "email" },
   { label: "LinkedIn — message me", href: "https://linkedin.com/in/kamalsanwal", type: "linkedin" },
-  { label: "Résumé — download PDF", href: "/resume.pdf", type: "resume", download: true },
   { label: "GitHub", href: "https://github.com/kamal-sanwal-11", type: "github" },
 ]
