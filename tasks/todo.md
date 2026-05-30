@@ -68,17 +68,23 @@
 
 # Portfolio v2.1 — Task Checklist
 
-- [ ] §1 Replace Tools + Domain Expertise with 4-card Skills & Tools section
-- [ ] §2 Career Stints — accordion behavior, logos, one-liners, Xtelify heading
-- [ ] §3 Fix Approach card number visibility (01–05)
-- [ ] §4 Remove résumé CTA from Hero
-- [ ] §5 Remove résumé CTA from GetInTouch
-- [ ] §6 Confirm résumé link only in header
-- [ ] §7 Remove hero metric strip
-- [ ] §8 Products & Impact — reorder + equal-size cards
-- [ ] §9 Logos — directory, CompanyLogo component, graceful fallback
-- [ ] §10 npm run build passes with zero TS errors
+- [x] §1 Replace Tools + Domain Expertise with 4-card Skills & Tools section
+- [x] §2 Career Stints — accordion behavior, logos, one-liners, Xtelify heading
+- [x] §3 Fix Approach card number visibility (01–05)
+- [x] §4 Remove résumé CTA from Hero
+- [x] §5 Remove résumé CTA from GetInTouch
+- [x] §6 Confirm résumé link only in header
+- [x] §7 Remove hero metric strip
+- [x] §8 Products & Impact — reorder + equal-size cards
+- [x] §9 Logos — directory, CompanyLogo component, graceful fallback
+- [x] §10 npm run build passes with zero TS errors
 
 ## Review (v2.1)
 
-_To be filled after implementation._
+**Build:** `npm run build` — passed, zero TypeScript errors, zero lint errors.
+
+**§3 root cause:** Approach numbers were `text-slate-100 dark:text-slate-800` — near-identical to card background in both themes. Fixed to `text-indigo-500 dark:text-indigo-400`.
+
+**Framer Motion v12 guardrail:** All `ease` passed inline via `transition={{ duration, ease }}`, none inside shared Variants objects.
+
+**All §1–§9 items complete.** PR opened: https://github.com/kamal-sanwal-11/my_portfolio/pull/3
