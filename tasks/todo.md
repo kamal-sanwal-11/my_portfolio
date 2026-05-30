@@ -50,7 +50,7 @@
 
 ---
 
-## Review section
+## Review section (v2)
 
 **Build:** `npm run build` — passed, zero TypeScript errors, zero lint errors.
 
@@ -63,3 +63,22 @@
 2. Verify dates — BharatPe: Feb 2024 – Jan 2026; Xtelify: Jan 2026 – Present.
 3. Add quantified Xtelify metrics to `data.ts` when available.
 4. Confirm Airtel/Xtelify theme color (defaulted to `#E40000`).
+
+---
+
+# Portfolio v2.1 — Task Checklist
+
+- [ ] §1 Replace Tools + Domain Expertise with 4-card Skills & Tools section
+- [ ] §2 Career Stints — accordion behavior, logos, one-liners, Xtelify heading
+- [ ] §3 Fix Approach card number visibility (01–05)
+- [ ] §4 Remove résumé CTA from Hero
+- [ ] §5 Remove résumé CTA from GetInTouch
+- [ ] §6 Confirm résumé link only in header
+- [ ] §7 Remove hero metric strip
+- [ ] §8 Products & Impact — reorder + equal-size cards
+- [ ] §9 Logos — directory, CompanyLogo component, graceful fallback
+- [ ] §10 npm run build passes with zero TS errors
+
+## Review (v2.1)
+
+_To be filled after implementation._
