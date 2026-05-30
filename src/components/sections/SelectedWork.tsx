@@ -9,10 +9,10 @@ function WorkCard({ item }: { item: WorkItem }) {
 
   return (
     <div
-      className="flex flex-col rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
+      className="flex flex-col h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
       style={{ borderTopColor: item.companyColor, borderTopWidth: 3 }}
     >
-      <div className="p-6 flex-1">
+      <div className="p-6 flex flex-col flex-1">
         {/* Category + company */}
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
@@ -28,10 +28,10 @@ function WorkCard({ item }: { item: WorkItem }) {
         </div>
 
         <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">{item.title}</h3>
-        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">{item.blurb}</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3">{item.blurb}</p>
 
-        {/* Metrics */}
-        <div className="flex flex-wrap gap-2">
+        {/* Metrics pinned to bottom of collapsed area */}
+        <div className="flex flex-wrap gap-2 mt-auto">
           {item.metrics.map((m) => (
             <div
               key={m.label}
@@ -96,7 +96,7 @@ export default function SelectedWork() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 auto-rows-fr gap-6 items-stretch">
           {work.map((item, i) => (
             <motion.div
               key={item.id}
@@ -104,6 +104,7 @@ export default function SelectedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, ease: "easeOut", delay: i * 0.05 }}
+              className="flex"
             >
               <WorkCard item={item} />
             </motion.div>
