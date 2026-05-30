@@ -1,19 +1,19 @@
 import Hero from "@/components/sections/Hero"
-import About from "@/components/sections/About"
-import Experience from "@/components/sections/Experience"
-import Skills from "@/components/sections/Skills"
+import SelectedWork from "@/components/sections/SelectedWork"
+import CareerStints from "@/components/sections/CareerStints"
+import Approach from "@/components/sections/Approach"
 import Education from "@/components/sections/Education"
-import Contact from "@/components/sections/Contact"
+import GetInTouch from "@/components/sections/GetInTouch"
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <About />
-      <Experience />
-      <Skills />
+      <SelectedWork />
+      <CareerStints />
+      <Approach />
       <Education />
-      <Contact />
+      <GetInTouch />
     </>
   )
 }
