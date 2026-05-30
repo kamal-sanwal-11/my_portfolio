@@ -1,11 +1,19 @@
 "use client"
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { ChevronDown, Award, Briefcase } from "lucide-react"
 import { experiences, type Experience } from "@/lib/data"
+import CompanyLogo from "@/components/CompanyLogo"
 
-function StintCard({ exp, defaultOpen }: { exp: Experience; defaultOpen: boolean }) {
-  const [open, setOpen] = useState(defaultOpen)
+interface StintCardProps {
+  exp: Experience
+  isOpen: boolean
+  onToggle: () => void
+}
+
+function StintCard({ exp, isOpen, onToggle }: StintCardProps) {
+  const reduced = useReducedMotion()
+  const shortName = exp.company.split(" – ")[0].split(" (")[0]
 
   return (
     <div
@@ -13,44 +21,44 @@ function StintCard({ exp, defaultOpen }: { exp: Experience; defaultOpen: boolean
       style={{
         borderLeftColor: exp.theme.primary,
         borderLeftWidth: 4,
-        backgroundColor: open ? exp.theme.bg : undefined,
+        backgroundColor: isOpen ? exp.theme.bg : undefined,
       }}
     >
-      {/* Header — always visible */}
       <button
-        onClick={() => setOpen(!open)}
+        onClick={onToggle}
         className="w-full text-left px-6 py-5 flex items-start justify-between gap-4 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500"
-        aria-expanded={open}
+        aria-expanded={isOpen}
       >
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1 flex-wrap">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
+            <CompanyLogo src={exp.logo} name={shortName} />
             <span
               className="text-xs font-semibold px-2 py-0.5 rounded-full text-white shrink-0"
               style={{ backgroundColor: exp.theme.primary }}
             >
-              {exp.company.split(" – ")[0].split(" (")[0]}
+              {shortName}
             </span>
             <span className="text-xs text-slate-500 dark:text-slate-400">{exp.period}</span>
           </div>
           <p className="font-bold text-slate-900 dark:text-slate-100 text-base leading-snug">{exp.role}</p>
-          {!open && (
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">{exp.summary}</p>
+          {!isOpen && (
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">{exp.oneLiner}</p>
           )}
         </div>
         <ChevronDown
           size={18}
-          className={`shrink-0 mt-1 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`shrink-0 mt-1 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
       <AnimatePresence initial={false}>
-        {open && (
+        {isOpen && (
           <motion.div
             key="body"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: "easeInOut" }}
+            initial={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            animate={reduced ? { opacity: 1 } : { height: "auto", opacity: 1 }}
+            exit={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{ duration: reduced ? 0 : 0.28, ease: "easeInOut" }}
             className="overflow-hidden"
           >
             <div className="px-6 pb-6 space-y-5 border-t border-slate-100 dark:border-slate-800 pt-4">
@@ -102,6 +110,8 @@ function StintCard({ exp, defaultOpen }: { exp: Experience; defaultOpen: boolean
 }
 
 export default function CareerStints() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
     <section id="career" className="py-24 bg-white dark:bg-[#0B0B0F]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,7 +139,11 @@ export default function CareerStints() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, ease: "easeOut", delay: i * 0.06 }}
             >
-              <StintCard exp={exp} defaultOpen={i === 0} />
+              <StintCard
+                exp={exp}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex((prev) => (prev === i ? null : i))}
+              />
             </motion.div>
           ))}
         </div>
