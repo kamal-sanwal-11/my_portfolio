@@ -1,40 +1,43 @@
 "use client"
 import { motion } from "framer-motion"
+import { GraduationCap } from "lucide-react"
 import { education } from "@/lib/data"
-import { FiBook } from "react-icons/fi"
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-}
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
-          <p className="text-indigo-600 font-semibold text-sm uppercase tracking-widest mb-2">Background</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12">Education</h2>
+    <section id="education" className="py-24 bg-white dark:bg-[#0B0B0F]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mb-10"
+        >
+          <p className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 tracking-widest uppercase mb-2">
+            Background
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100">Education</h2>
         </motion.div>
-        <div className="grid sm:grid-cols-2 gap-6">
+
+        <div className="grid sm:grid-cols-2 gap-5">
           {education.map((edu, i) => (
             <motion.div
               key={i}
-              className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex gap-4"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: i * 0.1 }}
+              className="flex gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900"
             >
-              <div className="w-12 h-12 flex-shrink-0 rounded-xl bg-indigo-100 flex items-center justify-center">
-                <FiBook className="text-indigo-600" size={20} />
+              <div className="w-10 h-10 shrink-0 rounded-xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center">
+                <GraduationCap size={18} className="text-indigo-600 dark:text-indigo-400" />
               </div>
               <div>
-                <h3 className="font-bold text-gray-900">{edu.degree}</h3>
-                <p className="text-indigo-600 text-sm font-medium mt-0.5">{edu.field}</p>
-                <p className="text-gray-500 text-sm mt-1">{edu.institution}</p>
-                <p className="text-gray-400 text-xs mt-1">{edu.period}</p>
+                <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm leading-snug">{edu.degree}</h3>
+                <p className="text-indigo-600 dark:text-indigo-400 text-xs font-medium mt-0.5">{edu.field}</p>
+                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1">{edu.institution}</p>
+                <p className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">{edu.period}</p>
               </div>
             </motion.div>
           ))}
