@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { Mail, FileDown, ExternalLink, Code2 } from "lucide-react"
+import { Mail, ExternalLink, Code2 } from "lucide-react"
 
 const links = [
   {
@@ -18,19 +18,11 @@ const links = [
     primary: true,
   },
   {
-    label: "Résumé",
-    sub: "Download PDF",
-    href: "/resume.pdf",
-    icon: FileDown,
-    primary: true,
-    download: true,
-  },
-  {
     label: "GitHub",
     sub: "kamal-sanwal-11",
     href: "https://github.com/kamal-sanwal-11",
     icon: Code2,
-    primary: false,
+    primary: true,
   },
 ]
 
@@ -60,18 +52,15 @@ export default function GetInTouch() {
               <motion.a
                 key={link.label}
                 href={link.href}
-                {...(link.download ? { download: true } : { target: "_blank", rel: "noopener noreferrer" })}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, ease: "easeOut", delay: i * 0.07 }}
-                className={`flex items-center gap-3 px-6 py-4 rounded-2xl border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-                  link.primary
-                    ? "border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-indigo-500 hover:shadow-sm text-slate-900 dark:text-slate-100"
-                    : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-400 text-slate-600 dark:text-slate-400"
-                }`}
+                className="flex items-center gap-3 px-6 py-4 rounded-2xl border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-indigo-500 hover:shadow-sm text-slate-900 dark:text-slate-100"
               >
-                <Icon size={20} className={link.primary ? "text-indigo-600 dark:text-indigo-400" : "text-slate-500 dark:text-slate-500"} />
+                <Icon size={20} className="text-indigo-600 dark:text-indigo-400" />
                 <div className="text-left">
                   <p className="font-semibold text-sm">{link.label}</p>
                   <p className="text-xs text-slate-500 dark:text-slate-400">{link.sub}</p>
